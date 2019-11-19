@@ -5,21 +5,33 @@ import "./ShoppingList.css"
 const ShoppingList = props => {
     return (
         <table border={1}>
+            <thead>
             <tr>
                 {
-                    props.categories.map(category => <th>{category.name}</th>)
+                    props.categories.map((category, index) =>
+                        <th key={index}>
+                            {category.name}
+                            <div className="Delete" onClick={() => props.onCategoryDelete(index)}>X</div>
+                        </th>)
                 }
-                <th>
-                    <button onClick={props.onCategoryAdd}>Dodaj kategorię</button>
-                </th>
+                {
+                    props.categories.length < 5 &&
+                    <th>
+                        <div>
+                            <button onClick={props.onCategoryAdd}>Dodaj kategorię</button>
+                        </div>
+                    </th>
+                }
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 {
                     props.categories.map((category, categoryIndex) =>
-                        <td valign="top">
+                        <td key={categoryIndex} valign="top">
                             {
                                 category.itemList.map((item, itemIndex) =>
-                                    <div className="Item">
+                                    <div key={item.name + itemIndex} className="Item">
                                         <div
                                             className={item.checked ? "Item--crossed" : ""}
                                             onClick={() => props.onItemCheck(itemIndex, categoryIndex)}
@@ -27,7 +39,7 @@ const ShoppingList = props => {
                                             {item.name}
                                         </div>
                                         <div
-                                            className={"DeleteItem"}
+                                            className="Delete"
                                             onClick={() => props.onItemDelete(itemIndex, categoryIndex)}
                                         >
                                             X
@@ -35,13 +47,17 @@ const ShoppingList = props => {
                                     </div>
                                 )
                             }
-                            <tr>
-                                <button onClick={() => props.onItemAdd(categoryIndex)}>Dodaj przedmiot</button>
-                            </tr>
+                            {
+                                category.itemList.length < 20 &&
+                                <div>
+                                    <button onClick={() => props.onItemAdd(categoryIndex)}>Dodaj przedmiot</button>
+                                </div>
+                            }
                         </td>
                     )
                 }
             </tr>
+            </tbody>
         </table>
     );
 };
@@ -55,6 +71,7 @@ ShoppingList.propTypes = {
         }).isRequired
     }).isRequired,
     onCategoryAdd: PropTypes.func,
+    onCategoryDelete: PropTypes.func,
     onItemAdd: PropTypes.func,
     onItemCheck: PropTypes.func,
     onItemDelete: PropTypes.func

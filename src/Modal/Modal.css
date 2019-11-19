@@ -1,0 +1,27 @@
+.Backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.Modal {
+    position: absolute;
+    top:20%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius:2rem;
+    padding: 1rem 1rem 2.3rem;
+}
+.Modal input {
+    border: rgba(0,0,0, 0.2) 1px solid;
+}
+
+.Modal button {
+    background-color: rgba(0,0,0, 0.1);
+    border: rgba(0,0,0, 0.2) 1px solid;
+}

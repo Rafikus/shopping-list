@@ -3,12 +3,21 @@
     user-select: none;
     display: flex;
     justify-content: space-between;
+    min-width: 6rem;
 }
 
 .Item--crossed {
     text-decoration: line-through;
 }
 
-.DeleteItem {
+.Delete {
+    cursor: pointer;
+    user-select: none;
+    float: right;
     color: red;
+}
+
+button {
+    background-color: rgba(0,0,0, 0.1);
+    border: rgba(0,0,0, 0.2) 1px solid;
 }
