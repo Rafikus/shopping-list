@@ -1,0 +1,14 @@
+.Item {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Item--crossed {
+    text-decoration: line-through;
+}
+
+.DeleteItem {
+    color: red;
+}
